@@ -1,0 +1,54 @@
+
+{% load staticfiles %}
+{%load render_table from django_tables2 %}
+
+<html>
+	<head>
+		<title>Recitales Madrid</title>
+		<link rel="stylesheet" href="{% static 'css/Actividades.css' %}">
+	</head>
+<body>
+
+ 
+
+<div class="page-header">
+  <h1> Recitales Madrid</h1>
+ <h3> Numero de Recitales:   {{ Recitales.count}}</h3>
+
+</div>
+
+
+<br/>
+
+  
+  {% render_table Recitales %}
+  
+  <br/>
+
+  
+  
+  <h2 align="center"> Clasificadas por subtipos</h2>
+  <br>
+  <ul>
+  
+  {%regroup Recitales|dictsort:"tipo"  by tipo as Activ_list%}
+     
+{% for pos in Activ_list %}
+    <li> <h4>Grupo: {{ pos.grouper}} ({{ pos.list|length }}) </h4>
+    <ul>
+        {% for item in pos.list %}
+
+          <li> id evento: {{ item.idevento }} Fecha evento: {{ item.fechaevento.date }} Fecha fin evento: {{ item.fechafin.date }} </li>
+       		<hr/>
+        {% endfor %}
+    </ul>
+    </li>
+    
+{% endfor %}
+
+</ul>
+
+
+
+       </body>
+</html>

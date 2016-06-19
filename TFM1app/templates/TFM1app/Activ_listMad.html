@@ -1,0 +1,75 @@
+{% extends 'TFM1app/base.html' %}
+{% load staticfiles %}
+{% block content %}
+{%load render_table from django_tables2 %}
+
+<html>
+	<head>
+		<title>Actividades Madrid</title>
+		<link rel="stylesheet" href="{% static 'css/Actividades.css' %}">
+	</head>
+<body>
+
+ 
+
+<div class="page-header">
+  <h1> Actividades Madrid</h1>
+ <h3> Numero de actividades:   {{ Activmads.count}}</h3>
+
+</div>
+
+{%regroup Activmads|dictsort:"tipo" by tipo as title_list%}
+    
+  <ul>
+  
+  
+  
+  {% for pos in title_list %}
+     
+    
+
+    
+	<li>Tipo: {{ pos.grouper}} = {% widthratio pos.list|length  Activmads.count 100 %}% </li>
+	
+	<li><img  height="20" width="{% widthratio pos.list|length  Activmads.count 100 %}%" /></li>
+	
+	
+  {% endfor %}
+  <li>Total = {% widthratio Activmads.count  Activmads.count 100 %}%</li>
+<li><img  height="20" width="{% widthratio Activmads.count  Activmads.count 100 %}%" /></li>
+</ul>
+
+<br>
+<a class="boton_personalizado" href="http://127.0.0.1:8000/musica" target="_blank">Musica </a>
+<a class="boton_personalizado" href="http://127.0.0.1:8000/fiestas" target="_blank">Fiestas </a>
+<a class="boton_personalizado" href="http://127.0.0.1:8000/cuentos" target="_blank">Cuenta cuentos </a>
+<a class="boton_personalizado" href="http://127.0.0.1:8000/comemoraciones" target="_blank">Comemoraciones </a>
+<a class="boton_personalizado" href="http://127.0.0.1:8000/destacada" target="_blank">Programaciondestacada </a>
+<a class="boton_personalizado" href="http://127.0.0.1:8000/cine" target="_blank">Cine </a>
+<a class="boton_personalizado" href="http://127.0.0.1:8000/danza" target="_blank">Danza </a>
+<a class="boton_personalizado" href="http://127.0.0.1:8000/conferencias" target="_blank">Conferencias </a>
+<a class="boton_personalizado" href="http://127.0.0.1:8000/talleres" target="_blank">Cursos y talleres </a>
+<a class="boton_personalizado" href="http://127.0.0.1:8000/actividades" target="_blank">Actividades </a>
+<a class="boton_personalizado" href="http://127.0.0.1:8000/circo" target="_blank">Circo </a>
+<a class="boton_personalizado" href="http://127.0.0.1:8000/concursos" target="_blank">Concursos </a>
+<a class="boton_personalizado" href="http://127.0.0.1:8000/congresos" target="_blank">Congresos </a>
+<a class="boton_personalizado" href="http://127.0.0.1:8000/excursiones" target="_blank">Excursiones </a>
+<a class="boton_personalizado" href="http://127.0.0.1:8000/exposiciones" target="_blank">Exposiciones </a>
+<a class="boton_personalizado" href="http://127.0.0.1:8000/ferias" target="_blank">Ferias </a>
+<a class="boton_personalizado" href="http://127.0.0.1:8000/recitales" target="_blank">Recitales </a>
+
+<hr/>
+
+
+ <h1  align= "center"> Listado de actividades </h1>
+ {% render_table Activmads %}
+  <hr/>
+
+   
+
+
+
+{% endblock %}
+</body>
+</html>
+

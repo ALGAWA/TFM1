@@ -1,0 +1,35 @@
+{% extends 'TFM1app/base.html' %}
+{% block content %}
+{% load staticfiles %}
+{%load render_table from django_tables2 %}
+
+<html>
+	<head>
+		<title>Actividades  Barcelona</title>
+		<link rel="stylesheet" href="{% static 'css/Actividades.css' %}">
+	</head>
+<body>
+<a name="inicio"></a>
+ 
+
+
+  <h1> Actividades  Barcelona</h1>
+ 
+ <h5><a href="http://algawa.pythonanywhere.com/"> Home </a>
+ 	           <a href="http://127.0.0.1:8000/bcn"> / Barcelona </a></h5>
+
+
+<br/>
+
+  
+  {% render_table Actividades %}
+ 
+  
+<p>
+        <a href="#inicio">
+          <span class="glyphicon glyphicon-arrow-up"></span>
+        </a>
+    </p>
+{% endblock %}
+       </body>
+</html>

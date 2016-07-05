@@ -7,12 +7,14 @@ import datetime
 import sqlite3
 import requests
 
+def Por_tipo(request, tipo):
+    Actividades = Activbcn.objects.filter(  tipo  = tipo )
+    return render(request, "TFM1app/Actividadesbcn.html", {'Actividades': Actividades})
 
 
-
-def Por_tipo_cinebarcelona(request):
-    Cinesbcn = Activbcn.objects.raw('SELECT * FROM TFM1app_Activbcn WHERE  tipo  like "Cine%" ')
-    return render(request, 'TFM1app/Cine_barcelona.html', {'Cinesbcn': Cinesbcn})
+def Por_tipo_cine(request):
+    Cines = Activbcn.objects.raw('SELECT * FROM TFM1app_Activbcn WHERE  tipo  like "Cine%" ')
+    return render(request, 'TFM1app/Cine_barcelona.html', {'Cines': Cines})
 
 def Por_tipo_Colonias(request):
     Colonias = Activbcn.objects.raw('SELECT * FROM TFM1app_Activbcn WHERE  tipo  like "Colonias%" ')
@@ -37,7 +39,7 @@ def Por_tipo_Ferias(request):
 
 def Por_tipo_Fiestas(request):
     Fiestas = Activbcn.objects.raw('SELECT * FROM TFM1app_Activbcn WHERE  tipo  like "Fiestas%" ')
-    return render(request, 'TFM1app/Fiestas_Barcelona.html', {'Fiestas': Fiestas})
+    return render(request, 'TFM1app/Fiestas_barcelona.html', {'Fiestas': Fiestas})
 
 def Por_tipo_Juegos(request):
     Juegos = Activbcn.objects.raw('SELECT * FROM TFM1app_Activbcn WHERE  tipo  like "Juegos%" ')
@@ -53,7 +55,7 @@ def Por_tipo_Moda(request):
     return render(request, 'TFM1app/Moda_barcelona.html', {'Modas': Modas})
 
 def Por_tipo_Musica(request):
-    Musicas = Activbcn.objects.raw('SELECT * FROM TFM1app_Activbcn WHERE  tipo  like "M%sica%" ')
+    Musicas = Activbcn.objects.raw('SELECT * FROM TFM1app_Activbcn WHERE  tipo  like "Música%" ')
     return render(request, 'TFM1app/Musica_barcelona.html', {'Musicas': Musicas})
 
 def Por_tipo_Ninos(request):
@@ -84,3 +86,6 @@ def Por_tipo_Teatro(request):
 def Por_tipo_Visitas(request):
     Visitas = Activbcn.objects.raw('SELECT * FROM TFM1app_Activbcn WHERE  tipo  like "Visitas%" ')
     return render(request, 'TFM1app/Visitas_barcelona.html', {'Visitas': Visitas})
+def Por_tipo_culturageneral(request):
+    Culturas = Activbcn.objects.raw('SELECT * FROM TFM1app_Activbcn WHERE  tipo  like "Visitas%" ')
+    return render(request, 'TFM1app/Culturageneral_barcelona.html', {'Culturas': Culturas})

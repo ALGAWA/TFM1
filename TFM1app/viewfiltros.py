@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from .models import Activmad
-from bs4 import BeautifulSoup
-import xml.etree.ElementTree as etree
-import datetime 
-import sqlite3
-import requests
 
+
+
+
+def Por_tipo(request, tipo):
+    Actividades = Activmad.objects.filter(  tipo  = tipo )
+    return render(request, "TFM1app/Activ.html", {'Actividades': Actividades})
 
 def Por_tipo_Musica(request):
     Musicas = Activmad.objects.raw('SELECT * FROM TFM1app_Activmad WHERE  tipo  like "Musica%" ')

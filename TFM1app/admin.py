@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Activmad, Activbcn
 
-# Register your models here.
+admin.site.register(Activmad)
+admin.site.register(Activbcn)

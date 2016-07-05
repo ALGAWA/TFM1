@@ -1,0 +1,54 @@
+{% extends 'TFM1app/base.html' %}
+{% load staticfiles %}
+{% block content %}
+{% load staticfiles %}
+{%load render_table from django_tables2 %}
+
+<html>
+	<head>
+		<title>Cultura general Barcelona</title>
+		<link rel="stylesheet" href="{% static 'css/Actividades.css' %}">
+	</head>
+<body>
+<a name="inicio"></a>
+ 
+
+
+  <h1> Cultura general  </h1>
+ 
+ <h5><a href="http://algawa.pythonanywhere.com/"> Home </a>
+ 	           <a href="http://127.0.0.1:8000/bcn"> / Barcelona </a></h5>
+
+
+<br/>
+
+  
+  {% render_table Culturas %}
+  <h2 align="center"> Clasificadas por subtipos</h2>
+  <br>
+  <ul>
+  
+  {%regroup Culturas|dictsort:"tipo"  by tipo as Activ_list%}
+     
+{% for pos in Activ_list %}
+    <li> <h4>Grupo: {{ pos.grouper}} ({{ pos.list|length }}) </h4>
+    <ul>
+        {% for item in pos.list %}
+	<div class="{% cycle 'row1' 'row2' %}">
+          <li> id evento: {{ item.idevento }} -  titulo:  {{item.titulo}} - Fecha evento: {{ item.fechaevento.date }} - Fecha fin evento: {{ item.fechafin.date }} </li>
+   </div>
+        {% endfor %}
+    </ul>
+    </li>
+    
+{% endfor %}
+
+</ul>
+<p>
+        <a href="#inicio">
+          <span class="glyphicon glyphicon-arrow-up"></span>
+        </a>
+    </p>
+{% endblock %}
+       </body>
+</html>

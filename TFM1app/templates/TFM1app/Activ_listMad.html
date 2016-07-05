@@ -2,74 +2,80 @@
 {% load staticfiles %}
 {% block content %}
 {%load render_table from django_tables2 %}
-
-<html>
+<!DOCTYPE html>
+<html lang="es">
 	<head>
+		<meta http-equiv="Content-Language" content="es"/>     
+	    <meta charset="utf-8">
 		<title>Actividades Madrid</title>
-		<link rel="stylesheet" href="{% static 'css/Actividades.css' %}">
+		<link rel="stylesheet" href="{% static 'css/Actividades.css' %}">	
 	</head>
+	
 <body>
-
+<a name="inicio"></a>
  
 
-<div class="page-header">
-  <h1> Actividades Madrid</h1>
- <h3> Numero de actividades:   {{ Activmads.count}}</h3>
 
-</div>
-
-{%regroup Activmads|dictsort:"tipo" by tipo as title_list%}
-    
-  <ul>
-  
-  
-  
-  {% for pos in title_list %}
-     
-    
-
-    
-	<li>Tipo: {{ pos.grouper}} = {% widthratio pos.list|length  Activmads.count 100 %}% </li>
-	
-	<li><img  height="20" width="{% widthratio pos.list|length  Activmads.count 100 %}%" /></li>
-	
-	
-  {% endfor %}
-  <li>Total = {% widthratio Activmads.count  Activmads.count 100 %}%</li>
-<li><img  height="20" width="{% widthratio Activmads.count  Activmads.count 100 %}%" /></li>
-</ul>
-
-<br>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/musica" target="_blank">Musica </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/fiestas" target="_blank">Fiestas </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/cuentos" target="_blank">Cuenta cuentos </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/comemoraciones" target="_blank">Comemoraciones </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/destacada" target="_blank">Programaciondestacada </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/cine" target="_blank">Cine </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/danza" target="_blank">Danza </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/conferencias" target="_blank">Conferencias </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/talleres" target="_blank">Cursos y talleres </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/actividades" target="_blank">Actividades </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/circo" target="_blank">Circo </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/concursos" target="_blank">Concursos </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/congresos" target="_blank">Congresos </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/excursiones" target="_blank">Excursiones </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/exposiciones" target="_blank">Exposiciones </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/ferias" target="_blank">Ferias </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/recitales" target="_blank">Recitales </a>
-
-<hr/>
+  <h1> Actividades Madrid <small align="right"> N&uacutemero de actividades:   {{ Activmads.count}}</small></h1>
 
 
- <h1  align= "center"> Listado de actividades </h1>
- {% render_table Activmads %}
-  <hr/>
 
+ 	  <h3><a href="http://algawa.pythonanywhere.com/"> Home </a></h3>
+
+
+{%regroup Activmads|dictsort:"tipo" by tipo as title_list%}  
+     <table class="grafico">
+  <colgroup >
+   {% for pos in title_list %}
+ <tr>
+    <th><a href="{{pos.grouper}}/"> <small>Tipo: {{ pos.grouper|default:"No determinado"}}  </small></a>= {% widthratio pos.list|length  Activmads.count 100 %}% </th>
    
+    <th><img   height="20" width="{% widthratio pos.list|length  Activmads.count 5000 %}" /></th>
+  </tr>
+   {% endfor %}
+
+
+    <!--<th><p class="text-left"> <small>total . </small></p></th>
+   <th><img  height="20" width="{% widthratio Activmads.count  Activmads.count 800 %}%" /></th>-->
+  
+</colgroup>
+</table>
 
 
 
+
+
+ <h1  align= "center"> Listado total de actividades </h1>
+ {% render_table Activmads %}
+ <hr>
+<h2 align="center"> Clasificadas por subtipos</h2>
+ <br/>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/actividades" target="_blank">ActivCalle </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/cine" target="_blank">Cine </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/circo" target="_blank">Circo </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/comemoraciones" target="_blank">Comemoraciones </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/conferencias" target="_blank">Conferencias </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/concursos" target="_blank">Concursos </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/congresos" target="_blank">Congresos </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/cuentos" target="_blank">Cuenta cuentos </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/talleres" target="_blank">Cursos  </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/danza" target="_blank">Danza </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/excursiones" target="_blank">Excursiones </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/exposiciones" target="_blank">Exposiciones </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/fiestas" target="_blank">Fiestas </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/ferias" target="_blank">Ferias </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/musica" target="_blank">Musica </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/destacada" target="_blank">Destacada </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/recitales" target="_blank">Recitales </a>
+<hr>
+	<p>
+        <a href="#inicio">
+          <span class="glyphicon glyphicon-arrow-up"></span>
+        </a>
+    </p>
+  <hr>
 {% endblock %}
+
 </body>
 </html>
 

@@ -1,34 +1,29 @@
-
-
+{% extends 'TFM1app/base.html' %}
+{% load staticfiles %}
+{% block content %}
 {% load staticfiles %}
 {%load render_table from django_tables2 %}
 
 <html>
 	<head>
-		<title>Actividades Madrid</title>
+		<title>Actividades  Madrid</title>
 		<link rel="stylesheet" href="{% static 'css/Actividades.css' %}">
 	</head>
 <body>
-
+<a name="inicio"></a>
  
 
-<div class="page-header">
-  <h1> Actividades Madrid</h1>
- <h3> Numero de actividades destacadas:   {{ Actividades.count}}</h3>
 
-</div>
+  <h1> Actividades calle</h1>
+ 
+ <h6><a href="http://algawa.pythonanywhere.com/"> Home </a>
+ 	           <a href="http://127.0.0.1:8000/mad"> / Madrid </a></h6>
 
 
 <br/>
 
   
   {% render_table Actividades %}
-  
-  <br/>
-
-  
-  
-  
   <h2 align="center"> Clasificadas por subtipos</h2>
   <br>
   <ul>
@@ -39,9 +34,9 @@
     <li> <h4>Grupo: {{ pos.grouper}} ({{ pos.list|length }}) </h4>
     <ul>
         {% for item in pos.list %}
-
-          <li> id evento: {{ item.idevento }} Fecha evento: {{ item.fechaevento.date }} Fecha fin evento: {{ item.fechafin.date }} </li>
-       		<hr/>
+ 	 <div class="{% cycle 'row1' 'row2' %}">
+          <li> id evento: {{ item.idevento }} -  titulo:  {{item.titulo}} - Fecha evento: {{ item.fechaevento.date }} - Fecha fin evento: {{ item.fechafin.date }} </li>
+     </div>
         {% endfor %}
     </ul>
     </li>
@@ -49,9 +44,11 @@
 {% endfor %}
 
 </ul>
-
-
-
-
+<p>
+        <a href="#inicio">
+          <span class="glyphicon glyphicon-arrow-up"></span>
+        </a>
+    </p>
+{% endblock %}
        </body>
 </html>

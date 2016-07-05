@@ -1,72 +1,80 @@
-
 {% extends 'TFM1app/base.html' %}
 {% load staticfiles %}
 {% block content %}
 {%load render_table from django_tables2 %}
-
-<html>
-
-<head>
-<title>Actividades Barcelona</title>
-<link rel="stylesheet" href="{% static 'css/Actividades.css' %}">
-</head>
-
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta http-equiv="Content-Language" content="es"/>     
+	    <meta charset="utf-8">
+		<title>Actividades Barcelona</title>
+		<link rel="stylesheet" href="{% static 'css/Actividades.css' %}">
+		
+	</head>
 <body>
-<div class="page-header">
-<h1> Actividades Barcelona</h1>
+<a name="inicio"></a>
+ 
+  <h1> Actividades Barcelona <small align="right"> N&uacutemero de actividades:   {{ Activbcns.count}}</small></h1>
 
- <h3> Numero de actividades  {{ Activbcns.count}}</h3>
 
-</div>
-{%regroup Activbcns|dictsort:"tipo" by tipo as title_list%}
-    
-  <ul>
-  
-  
-  
-  {% for pos in title_list %}
-     
-    
+	
+ 	   <h5><a href="http://algawa.pythonanywhere.com/"> Home </a></h5>
+	
+		
 
-    
-	<li>Tipo: {{ pos.grouper}} = {% widthratio pos.list|length  Activbcns.count 100 %}% </li>
-	
-	<li><img  height="20" width="{% widthratio pos.list|length  Activbcns.count 100 %}%" /></li>
-	
-	
-  {% endfor %}
-  <li>Total = {% widthratio Activbcns.count  Activbcns.count 100 %}%</li>
-<li><img  height="20" width="{% widthratio Activbcns.count  Activbcns.count 100 %}%" /></li>
-</ul>
+
 
 <br>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/cinebarcelona" target="_blank">Cine </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/coloniasbarcelona" target="_blank">Colonias </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/congresosbarcelona" target="_blank">Congresos </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/deportesbarcelona" target="_blank">Deportes </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/Exposicionesbarcelona" target="_blank">Exposicones </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/feriasbarcelona" target="_blank">Ferias </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/fiestasbarcelona" target="_blank">Fiestas </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/juegosbarcelona" target="_blank">Juegos </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/literaturabarcelona" target="_blank">Literatura </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/modabarcelona" target="_blank">Moda </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/musicabarcelona" target="_blank">Musica </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/ninosbarcelona" target="_blank">Ninos </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/premiosbarcelona" target="_blank">Premios </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/religiososbarcelona" target="_blank">Religiosos </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/solidaridadbarcelona" target="_blank">solidaridad </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/teatrobarcelona" target="_blank">Teatro </a>
-<a class="boton_personalizado" href="http://127.0.0.1:8000/visitasbarcelona" target="_blank">Visitas </a>
-  <hr/>
-   <h1  align= "center"> Listado de actividades </h1>
-   {% render_table Activbcns %}
+{%regroup Activbcns|dictsort:"tipo" by tipo as title_list%}  
+  <table class="grafico">
+  <colgroup >
+   {% for pos in title_list %}
+ <tr>
+    <th><a href="{{pos.grouper}}/"> <small>Tipo: {{ pos.grouper}}  </small></a>= {% widthratio pos.list|length  Activbcns.count 100 %}%  </th>
+   
+    <th><img   height="20" width="{% widthratio pos.list|length  Activbcns.count 5000 %}" /></th>
+  </tr>
+   {% endfor %}
 
+
+    <!--<th><p class="text-left"> <small>total . </small></p></th>
+   <th><img  height="20" width="{% widthratio Activmads.count  Activbcns.count 800 %}%" /></th>-->
+  
+</colgroup>
+</table>
+
+ <h1  align= "center"> Listado total de actividades </h1>
+ {% render_table Activbcns %}
+
+><hr/>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/cinebarcelona" target="_blank">Cine </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/coloniasbcn" target="_blank">Colonias </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/cogresosbcn" target="_blank">Congresos </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/deportesbcn" target="_blank">Deportes </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/Exposicionesbcn" target="_blank">Exposicones </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/feriasbcn" target="_blank">Ferias </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/fiestasbcn" target="_blank">Fiestas </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/juegosbcn" target="_blank">Juegos </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/Literaturabcn" target="_blank">Literatura </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/modabcn" target="_blank">Moda </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/musicbcn" target="_blank">Musica </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/ninosbcn" target="_blank">Ninos </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/premiosbcn" target="_blank">Premios </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/religiososbcn" target="_blank">Religiosos </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/solidaridadbcn" target="_blank">solidaridad </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/teatrobcn" target="_blank">Teatro </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/visitasbcn" target="_blank">Visitas </a>
+<a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/culturageneralbcn" target="_blank">Cultura </a>
+<hr>
+	<p>
+        <a href="#inicio">
+          <span class="glyphicon glyphicon-arrow-up"></span>
+        </a>
+    </p>
+  <hr>
 
 {% endblock %}
 
-
-
 </body>
 </html>
-
 

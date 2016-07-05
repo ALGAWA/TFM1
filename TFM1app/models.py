@@ -16,5 +16,7 @@ class Activbcn(models.Model):
     fechaevento = models.DateTimeField()
     fechafin =  models.DateTimeField()
     
+
+    
 def __str__(self):
     return self.titulo
